@@ -68,7 +68,7 @@ jobs:
       - name: export requirements
         run: uv export --locked --no-dev --no-emit-project --format requirements-txt > requirements.txt
       - name: pip-audit
-        run: uvx pip-audit@2.10.1 --disable-pip --strict -r requirements.txt
+        run: uvx --default-index https://pypi.mirror.ordercalc.internal/simple pip-audit@2.10.1 --disable-pip --strict -r requirements.txt
 
   docker:
     runs-on: ubuntu-latest
