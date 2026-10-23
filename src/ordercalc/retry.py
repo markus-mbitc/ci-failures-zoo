@@ -17,7 +17,6 @@ def call_with_retry[T](
         try:
             return fn()
         except retry_on:
-            if attempt >= attempts:
+            if attempt > attempts:
                 raise
             time.sleep(backoff_s * 2 ** (attempt - 1))
-            attempt += 1
