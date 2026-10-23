@@ -23,6 +23,8 @@ jobs:
           version: "0.13.4"
           enable-cache: false
       - run: uv sync --locked
+      - name: uv version
+         run: uv --version
       - name: ruff check
         run: uv run ruff check .
       - name: ruff format
