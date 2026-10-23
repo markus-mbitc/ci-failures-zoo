@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     env:
-      ORDERCALC_API_URL: https://api.ordercalc.example
+      ORDERCALC_API_ULR: https://api.ordercalc.example
     steps:
       - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v6
