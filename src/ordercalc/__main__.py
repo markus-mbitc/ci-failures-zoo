@@ -3,7 +3,7 @@
 from decimal import Decimal
 
 from ordercalc.config import get_settings
-from ordercalc.pricing import LineItem, calculate_total
+from ordercalc.pricing import LineItem, calculate_total, format_chf
 
 
 def main() -> None:
@@ -14,10 +14,10 @@ def main() -> None:
     ]
     result = calculate_total(items, vat_rate=settings.vat_rate, discount_pct=Decimal("10"))
     print(f"API:      {settings.api_url}")
-    print(f"Subtotal: CHF {result.subtotal:.2f}")
-    print(f"Discount: CHF {result.discount:.2f}")
-    print(f"VAT:      CHF {result.vat:.2f}")
-    print(f"Total:    CHF {result.total:.2f}")
+    print(f"Subtotal: {format_chf(result.subtotal)}")
+    print(f"Discount: {format_chf(result.discount)}")
+    print(f"VAT:      {format_chf(result.vat)}")
+    print(f"Total:    {format_chf(result.total)}")
 
 
 if __name__ == "__main__":

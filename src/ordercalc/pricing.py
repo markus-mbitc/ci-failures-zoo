@@ -36,6 +36,11 @@ def round_to_rappen(amount: Decimal) -> Decimal:
     return (amount / FIVE_RAPPEN).quantize(Decimal("1"), rounding=ROUND_HALF_UP) * FIVE_RAPPEN
 
 
+def format_chf(amount: Decimal) -> Decimal:
+    """Format an amount for display, e.g. CHF 33.35."""
+    return f"CHF {amount:.2f}"
+
+
 def calculate_total(
     items: list[LineItem], vat_rate: Decimal, discount_pct: Decimal = Decimal("0")
 ) -> OrderTotal:
