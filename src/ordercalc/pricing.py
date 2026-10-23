@@ -1,9 +1,13 @@
 """Pricing: subtotal, discount, VAT and rounding to 5 Rappen (CHF 0.05)."""
 
+import logging
+import os
 from dataclasses import dataclass
 from decimal import ROUND_HALF_UP, Decimal
 
 FIVE_RAPPEN = Decimal("0.05")
+
+log = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -43,6 +47,7 @@ def calculate_total(
         raise ValueError(f"discount_pct must be between 0 and 100, got {discount_pct}")
     subtotal = sum((item.total for item in items), Decimal("0"))
     discount = subtotal * discount_pct / Decimal("100")
+    log.debug("discount %s%% on %s = %s", discount_pct, subtotal, discount)
     net = subtotal - discount
     vat = net * vat_rate
     return OrderTotal(
